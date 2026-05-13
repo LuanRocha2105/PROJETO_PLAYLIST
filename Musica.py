@@ -5,3 +5,6 @@ class Musica:
         self.artista = artista
         self.genero = genero
         self.bpm = bpm
+
+    def mostrar(self):
+        print(f"[{self.id}] {self.titulo} - {self.artista} ({self.genero}) - {self.bpm} BPM")
