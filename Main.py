@@ -27,6 +27,14 @@ def buscar_musica(biblioteca):
         print("Musica nao encontrada.")
     else:
         musica.mostrar()
+        
+
+def remover_musica(biblioteca):
+    id = int(input("Id da musica para remover: "))
+    if biblioteca.remover(id):
+        print("Musica removida.")
+    else:
+        print("Id nao encontrado.")
 
 
 def menu():
