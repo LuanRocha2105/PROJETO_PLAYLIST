@@ -5,7 +5,7 @@ import os
 
 
 def limpar_tela():
-    input("Pressione qualquer tecla para continuar")
+    input("\nPressione qualquer tecla para continuar")
     os.system('cls' if os.name == 'nt' else 'clear')
 
 # garantir que o bpm seja inteiro e maior que 0 
@@ -39,8 +39,11 @@ def adicionar_musica(biblioteca):
     if bpm is None:
         return
     musica = biblioteca.adicionar(titulo, artista, genero, bpm)
-    print(f"\nMusica adicionada com id {musica.id}.")
-    limpar_tela()
+    if musica is None:
+        print("Musica ja existe na biblioteca (mesmo titulo e artista).")
+    else:
+        print(f"Musica adicionada com id {musica.id}.")
+    
 
 #op 2 
 def remover_musica(biblioteca):
@@ -51,13 +54,13 @@ def remover_musica(biblioteca):
         print("\nMusica removida.")
     else:
         print("\nId nao encontrado.")
-    limpar_tela()
+   
 
 #op 3
 def buscar_musica(biblioteca):
     print("\n1 - Buscar por id")
     print("2 - Buscar por titulo")
-    op = input("Escolha: ")
+    op = input("\nEscolha: ")
     if op == "1":
         id = ler_int("Id: ")
         if id is None:
@@ -74,8 +77,7 @@ def buscar_musica(biblioteca):
         print("\nMusica nao encontrada.")
     else:
         musica.mostrar()
-    limpar_tela()
-
+  
 #op 5 
 def montar_filas(biblioteca, filas):
     # limpa todas as filas antes de remontar
@@ -95,7 +97,7 @@ def montar_filas(biblioteca, filas):
             filas["Treinar"].enqueue(m)
         atual = atual.proximo
     print("\nFilas de humor montadas com sucesso!")
-    limpar_tela()
+    
 
 
 def escolher_fila(filas):
@@ -103,7 +105,7 @@ def escolher_fila(filas):
     print("2 - Focar (81 a 120 BPM)")
     print("3 - Animar (121 a 160 BPM)")
     print("4 - Treinar (acima de 160 BPM)")
-    op = input("Escolha a fila: ")
+    op = input("\nEscolha a fila: ")
     if op == "1":
         return "Relaxar"
     elif op == "2":
@@ -114,7 +116,6 @@ def escolher_fila(filas):
         return "Treinar"
     else:
         print("\nOpcao invalida.")
-        limpar_tela()
         return None
 
 #op 6
@@ -130,7 +131,7 @@ def reproduzir_proxima(filas, historico):
     print(f"\nReproduzindo da fila {nome}:")
     musica.mostrar()
     historico.enqueue(musica)
-    limpar_tela()
+    
 
 #op 7
 def exibir_fila_humor(filas):
@@ -139,13 +140,13 @@ def exibir_fila_humor(filas):
         return
     print(f"\n--- Fila {nome} ---")
     filas[nome].exibir()
-    limpar_tela()
+   
 
 #op 8
 def exibir_historico(historico):
     print("\n--- Historico de reproducoes ---")
     historico.exibir()
-    limpar_tela()
+   
 
 #op 9
 def estatisticas(biblioteca, filas, historico):
@@ -154,11 +155,11 @@ def estatisticas(biblioteca, filas, historico):
     for nome in filas:
         print(f"Fila {nome}: {filas[nome].tamanho()}")
     print(f"Total reproduzidas: {historico.tamanho()}")
-    limpar_tela()
+    
 
 
 def menu():
-    print("\n===== Sistema de Playlist =====")
+    print("========= Sistema de Playlist =========\n")
     print("1 - Adicionar musica na biblioteca")
     print("2 - Remover musica da biblioteca")
     print("3 - Buscar musica")
@@ -183,31 +184,41 @@ def main():
 
     while True:
         menu()
-        op = input("Escolha: ")
+        op = input("\nEscolha: ")
         if op == "1":
             adicionar_musica(biblioteca)
+            limpar_tela()
         elif op == "2":
             remover_musica(biblioteca)
+            limpar_tela()
         elif op == "3":
             buscar_musica(biblioteca)
+            limpar_tela()
         elif op == "4":
             biblioteca.listar()
+            limpar_tela()
         elif op == "5":
             montar_filas(biblioteca, filas)
+            limpar_tela()
         elif op == "6":
             reproduzir_proxima(filas, historico)
+            limpar_tela()
         elif op == "7":
             exibir_fila_humor(filas)
+            limpar_tela()
         elif op == "8":
             exibir_historico(historico)
+            limpar_tela()
         elif op == "9":
             estatisticas(biblioteca, filas, historico)
+            limpar_tela()
         elif op == "10":
-            print("Saindo...")
+            os.system('cls' if os.name == 'nt' else 'clear')
             break
         else:
-            print("Opcao ainda nao implementada.")
+            print("Opcao inválida, tente novamente.")
+            limpar_tela()
 
-
+os.system('cls' if os.name == 'nt' else 'clear')
 if __name__ == "__main__":
     main()
