@@ -38,6 +38,26 @@ def remover_musica(biblioteca):
         print("Id nao encontrado.")
 
 
+def montar_filas(biblioteca, filas):
+    # limpa todas as filas antes de remontar
+    for nome in filas:
+        filas[nome].limpar()
+
+    atual = biblioteca.inicio
+    while atual is not None:
+        m = atual.musica
+        if m.bpm <= 80:
+            filas["Relaxar"].enqueue(m)
+        elif m.bpm <= 120:
+            filas["Focar"].enqueue(m)
+        elif m.bpm <= 160:
+            filas["Animar"].enqueue(m)
+        else:
+            filas["Treinar"].enqueue(m)
+        atual = atual.proximo
+    print("Filas de humor montadas com sucesso!")
+
+
 def menu():
     print("\n===== Sistema de Playlist =====")
     print("1 - Adicionar musica na biblioteca")
@@ -73,6 +93,8 @@ def main():
             buscar_musica(biblioteca)
         elif op == "4":
             biblioteca.listar()
+        elif op == "5":
+            montar_filas(biblioteca, filas)
         elif op == "10":
             print("Saindo...")
             break
