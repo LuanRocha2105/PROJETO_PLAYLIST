@@ -7,20 +7,20 @@ import os
 def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-
+# garantir que o bpm seja inteiro e maior que 0 
 def ler_bpm():
     entrada = input("BPM: ")
     try:
         bpm = int(entrada)
     except ValueError:
-        print("BPM invalido! Precisa ser um numero inteiro.")
+        print("BPM invalido, precisa ser um numero inteiro.")
         return None
     if bpm <= 0:
         print("BPM precisa ser maior que zero.")
         return None
     return bpm
 
-
+# garantir que o usuario digite um numero inteiro
 def ler_int(mensagem):
     entrada = input(mensagem)
     try:
@@ -29,7 +29,7 @@ def ler_int(mensagem):
         print("Valor invalido! Precisa ser um numero inteiro.")
         return None
 
-
+#op 1
 def adicionar_musica(biblioteca):
     titulo = input("Titulo: ")
     artista = input("Artista: ")
@@ -40,6 +40,17 @@ def adicionar_musica(biblioteca):
     musica = biblioteca.adicionar(titulo, artista, genero, bpm)
     print(f"Musica adicionada com id {musica.id}.")
 
+#op 2 
+def remover_musica(biblioteca):
+    id = ler_int("Id da musica para remover: ")
+    if id is None:
+        return
+    if biblioteca.remover(id):
+        print("Musica removida.")
+    else:
+        print("Id nao encontrado.")
+
+#op 3
 def buscar_musica(biblioteca):
     print("1 - Buscar por id")
     print("2 - Buscar por titulo")
@@ -61,17 +72,7 @@ def buscar_musica(biblioteca):
     else:
         musica.mostrar()
 
-
-def remover_musica(biblioteca):
-    id = ler_int("Id da musica para remover: ")
-    if id is None:
-        return
-    if biblioteca.remover(id):
-        print("Musica removida.")
-    else:
-        print("Id nao encontrado.")
-
-
+#op 5 
 def montar_filas(biblioteca, filas):
     # limpa todas as filas antes de remontar
     for nome in filas:
@@ -110,7 +111,7 @@ def escolher_fila(filas):
         print("Opcao invalida.")
         return None
 
-
+#op 6
 def reproduzir_proxima(filas, historico):
     nome = escolher_fila(filas)
     if nome is None:
@@ -124,6 +125,7 @@ def reproduzir_proxima(filas, historico):
     musica.mostrar()
     historico.enqueue(musica)
 
+#op 7
 def exibir_fila_humor(filas):
     nome = escolher_fila(filas)
     if nome is None:
@@ -131,11 +133,12 @@ def exibir_fila_humor(filas):
     print(f"\n--- Fila {nome} ---")
     filas[nome].exibir()
 
+#op 8
 def exibir_historico(historico):
     print("\n--- Historico de reproducoes ---")
     historico.exibir()
 
-
+#op 9
 def estatisticas(biblioteca, filas, historico):
     print("\n--- Estatisticas ---")
     print(f"Total na biblioteca: {biblioteca.tamanho()}")
