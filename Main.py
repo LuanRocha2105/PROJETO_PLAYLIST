@@ -5,6 +5,7 @@ import os
 
 
 def limpar_tela():
+    input("Pressione qualquer tecla para continuar")
     os.system('cls' if os.name == 'nt' else 'clear')
 
 # garantir que o bpm seja inteiro e maior que 0 
@@ -13,10 +14,10 @@ def ler_bpm():
     try:
         bpm = int(entrada)
     except ValueError:
-        print("BPM invalido, precisa ser um numero inteiro.")
+        print("\nBPM invalido, precisa ser um numero inteiro.")
         return None
     if bpm <= 0:
-        print("BPM precisa ser maior que zero.")
+        print("\nBPM precisa ser maior que zero.")
         return None
     return bpm
 
@@ -26,7 +27,7 @@ def ler_int(mensagem):
     try:
         return int(entrada)
     except ValueError:
-        print("Valor invalido! Precisa ser um numero inteiro.")
+        print("\nValor invalido! Precisa ser um numero inteiro.")
         return None
 
 #op 1
@@ -38,21 +39,23 @@ def adicionar_musica(biblioteca):
     if bpm is None:
         return
     musica = biblioteca.adicionar(titulo, artista, genero, bpm)
-    print(f"Musica adicionada com id {musica.id}.")
+    print(f"\nMusica adicionada com id {musica.id}.")
+    limpar_tela()
 
 #op 2 
 def remover_musica(biblioteca):
-    id = ler_int("Id da musica para remover: ")
+    id = ler_int("\nId da musica para remover: ")
     if id is None:
         return
     if biblioteca.remover(id):
-        print("Musica removida.")
+        print("\nMusica removida.")
     else:
-        print("Id nao encontrado.")
+        print("\nId nao encontrado.")
+    limpar_tela()
 
 #op 3
 def buscar_musica(biblioteca):
-    print("1 - Buscar por id")
+    print("\n1 - Buscar por id")
     print("2 - Buscar por titulo")
     op = input("Escolha: ")
     if op == "1":
@@ -64,13 +67,14 @@ def buscar_musica(biblioteca):
         titulo = input("Titulo: ")
         musica = biblioteca.buscar_por_titulo(titulo)
     else:
-        print("Opcao invalida.")
+        print("\nOpcao invalida.")
         return
 
     if musica is None:
-        print("Musica nao encontrada.")
+        print("\nMusica nao encontrada.")
     else:
         musica.mostrar()
+    limpar_tela()
 
 #op 5 
 def montar_filas(biblioteca, filas):
@@ -90,11 +94,12 @@ def montar_filas(biblioteca, filas):
         else:
             filas["Treinar"].enqueue(m)
         atual = atual.proximo
-    print("Filas de humor montadas com sucesso!")
+    print("\nFilas de humor montadas com sucesso!")
+    limpar_tela()
 
 
 def escolher_fila(filas):
-    print("1 - Relaxar (ate 80 BPM)")
+    print("\n1 - Relaxar (ate 80 BPM)")
     print("2 - Focar (81 a 120 BPM)")
     print("3 - Animar (121 a 160 BPM)")
     print("4 - Treinar (acima de 160 BPM)")
@@ -108,7 +113,8 @@ def escolher_fila(filas):
     elif op == "4":
         return "Treinar"
     else:
-        print("Opcao invalida.")
+        print("\nOpcao invalida.")
+        limpar_tela()
         return None
 
 #op 6
@@ -121,9 +127,10 @@ def reproduzir_proxima(filas, historico):
         print(f"A fila {nome} esta vazia.")
         return
     musica = fila.dequeue()
-    print(f"Reproduzindo da fila {nome}:")
+    print(f"\nReproduzindo da fila {nome}:")
     musica.mostrar()
     historico.enqueue(musica)
+    limpar_tela()
 
 #op 7
 def exibir_fila_humor(filas):
@@ -132,11 +139,13 @@ def exibir_fila_humor(filas):
         return
     print(f"\n--- Fila {nome} ---")
     filas[nome].exibir()
+    limpar_tela()
 
 #op 8
 def exibir_historico(historico):
     print("\n--- Historico de reproducoes ---")
     historico.exibir()
+    limpar_tela()
 
 #op 9
 def estatisticas(biblioteca, filas, historico):
@@ -145,6 +154,7 @@ def estatisticas(biblioteca, filas, historico):
     for nome in filas:
         print(f"Fila {nome}: {filas[nome].tamanho()}")
     print(f"Total reproduzidas: {historico.tamanho()}")
+    limpar_tela()
 
 
 def menu():
