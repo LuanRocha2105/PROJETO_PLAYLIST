@@ -1,6 +1,15 @@
 from biblioteca import Biblioteca
 
 
+def adicionar_musica(biblioteca):
+    titulo = input("Titulo: ")
+    artista = input("Artista: ")
+    genero = input("Genero: ")
+    bpm = int(input("BPM: "))
+    musica = biblioteca.adicionar(titulo, artista, genero, bpm)
+    print(f"Musica adicionada com id {musica.id}.")
+
+
 def menu():
     print("\n===== Sistema de Playlist =====")
     print("1 - Adicionar musica na biblioteca")
@@ -21,7 +30,9 @@ def main():
     while True:
         menu()
         op = input("Escolha: ")
-        if op == "10":
+        if op == "1":
+            adicionar_musica(biblioteca)
+        elif op == "10":
             print("Saindo...")
             break
         else:
