@@ -12,6 +12,9 @@ class Biblioteca:
         self.proximo_id = 1
 
     def adicionar(self, titulo, artista, genero, bpm):
+        if self.existe(titulo, artista):
+            return None
+
         nova_musica = Musica(self.proximo_id, titulo, artista, genero, bpm)
         self.proximo_id += 1
         novo_nodo = NodoLista(nova_musica)
@@ -51,6 +54,15 @@ class Biblioteca:
                 return atual.musica
             atual = atual.proximo
         return None
+    
+    def existe(self, titulo, artista):
+        atual = self.inicio
+        while atual is not None:
+            if (atual.musica.titulo.lower() == titulo.lower() and
+                atual.musica.artista.lower() == artista.lower()):
+                return True
+            atual = atual.proximo
+        return False
     
     def remover(self, id):
         if self.inicio is None:
