@@ -26,6 +26,7 @@ class Biblioteca:
             atual.proximo = novo_nodo
         return nova_musica
     
+    #op 4
     def listar(self):
         if self.inicio is None:
             print("Biblioteca vazia.")
