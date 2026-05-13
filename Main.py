@@ -97,6 +97,18 @@ def exibir_fila_humor(filas):
     print(f"\n--- Fila {nome} ---")
     filas[nome].exibir()
 
+def exibir_historico(historico):
+    print("\n--- Historico de reproducoes ---")
+    historico.exibir()
+
+
+def estatisticas(biblioteca, filas, historico):
+    print("\n--- Estatisticas ---")
+    print(f"Total na biblioteca: {biblioteca.tamanho()}")
+    for nome in filas:
+        print(f"Fila {nome}: {filas[nome].tamanho()}")
+    print(f"Total reproduzidas: {historico.tamanho()}")
+
 
 def menu():
     print("\n===== Sistema de Playlist =====")
@@ -139,6 +151,10 @@ def main():
             reproduzir_proxima(filas, historico)
         elif op == "7":
             exibir_fila_humor(filas)
+        elif op == "8":
+            exibir_historico(historico)
+        elif op == "9":
+            estatisticas(biblioteca, filas, historico)
         elif op == "10":
             print("Saindo...")
             break
