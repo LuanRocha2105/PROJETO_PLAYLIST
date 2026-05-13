@@ -50,3 +50,21 @@ class Biblioteca:
                 return atual.musica
             atual = atual.proximo
         return None
+    
+    def remover(self, id):
+        if self.inicio is None:
+            return False
+
+        if self.inicio.musica.id == id:
+            self.inicio = self.inicio.proximo
+            return True
+
+        anterior = self.inicio
+        atual = self.inicio.proximo
+        while atual is not None:
+            if atual.musica.id == id:
+                anterior.proximo = atual.proximo
+                return True
+            anterior = atual
+            atual = atual.proximo
+        return False
