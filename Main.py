@@ -9,6 +9,25 @@ def adicionar_musica(biblioteca):
     musica = biblioteca.adicionar(titulo, artista, genero, bpm)
     print(f"Musica adicionada com id {musica.id}.")
 
+def buscar_musica(biblioteca):
+    print("1 - Buscar por id")
+    print("2 - Buscar por titulo")
+    op = input("Escolha: ")
+    if op == "1":
+        id = int(input("Id: "))
+        musica = biblioteca.buscar_por_id(id)
+    elif op == "2":
+        titulo = input("Titulo: ")
+        musica = biblioteca.buscar_por_titulo(titulo)
+    else:
+        print("Opcao invalida.")
+        return
+
+    if musica is None:
+        print("Musica nao encontrada.")
+    else:
+        musica.mostrar()
+
 
 def menu():
     print("\n===== Sistema de Playlist =====")
