@@ -32,6 +32,8 @@ def main():
         op = input("Escolha: ")
         if op == "1":
             adicionar_musica(biblioteca)
+        elif op == "4":
+            biblioteca.listar()
         elif op == "10":
             print("Saindo...")
             break
