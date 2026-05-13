@@ -58,6 +58,39 @@ def montar_filas(biblioteca, filas):
     print("Filas de humor montadas com sucesso!")
 
 
+def escolher_fila(filas):
+    print("1 - Relaxar (ate 80 BPM)")
+    print("2 - Focar (81 a 120 BPM)")
+    print("3 - Animar (121 a 160 BPM)")
+    print("4 - Treinar (acima de 160 BPM)")
+    op = input("Escolha a fila: ")
+    if op == "1":
+        return "Relaxar"
+    elif op == "2":
+        return "Focar"
+    elif op == "3":
+        return "Animar"
+    elif op == "4":
+        return "Treinar"
+    else:
+        print("Opcao invalida.")
+        return None
+
+
+def reproduzir_proxima(filas, historico):
+    nome = escolher_fila(filas)
+    if nome is None:
+        return
+    fila = filas[nome]
+    if fila.vazia():
+        print(f"A fila {nome} esta vazia.")
+        return
+    musica = fila.dequeue()
+    print(f"Reproduzindo da fila {nome}:")
+    musica.mostrar()
+    historico.enqueue(musica)
+
+
 def menu():
     print("\n===== Sistema de Playlist =====")
     print("1 - Adicionar musica na biblioteca")
@@ -95,6 +128,8 @@ def main():
             biblioteca.listar()
         elif op == "5":
             montar_filas(biblioteca, filas)
+        elif op == "6":
+            reproduzir_proxima(filas, historico)
         elif op == "10":
             print("Saindo...")
             break
