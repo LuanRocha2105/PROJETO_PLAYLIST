@@ -68,3 +68,11 @@ class Biblioteca:
             anterior = atual
             atual = atual.proximo
         return False
+    
+    def tamanho(self):
+        cont = 0
+        atual = self.inicio
+        while atual is not None:
+            cont += 1
+            atual = atual.proximo
+        return cont
