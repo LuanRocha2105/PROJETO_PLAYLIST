@@ -2,11 +2,36 @@ from biblioteca import Biblioteca
 from fila import Fila
 
 
+
+def ler_bpm():
+    entrada = input("BPM: ")
+    try:
+        bpm = int(entrada)
+    except ValueError:
+        print("BPM invalido! Precisa ser um numero inteiro.")
+        return None
+    if bpm <= 0:
+        print("BPM precisa ser maior que zero.")
+        return None
+    return bpm
+
+
+def ler_int(mensagem):
+    entrada = input(mensagem)
+    try:
+        return int(entrada)
+    except ValueError:
+        print("Valor invalido! Precisa ser um numero inteiro.")
+        return None
+
+
 def adicionar_musica(biblioteca):
     titulo = input("Titulo: ")
     artista = input("Artista: ")
     genero = input("Genero: ")
-    bpm = int(input("BPM: "))
+    bpm = ler_bpm()
+    if bpm is None:
+        return
     musica = biblioteca.adicionar(titulo, artista, genero, bpm)
     print(f"Musica adicionada com id {musica.id}.")
 
@@ -15,7 +40,9 @@ def buscar_musica(biblioteca):
     print("2 - Buscar por titulo")
     op = input("Escolha: ")
     if op == "1":
-        id = int(input("Id: "))
+        id = ler_int("Id: ")
+        if id is None:
+            return
         musica = biblioteca.buscar_por_id(id)
     elif op == "2":
         titulo = input("Titulo: ")
@@ -31,7 +58,9 @@ def buscar_musica(biblioteca):
 
 
 def remover_musica(biblioteca):
-    id = int(input("Id da musica para remover: "))
+    id = ler_int("Id da musica para remover: ")
+    if id is None:
+        return
     if biblioteca.remover(id):
         print("Musica removida.")
     else:
