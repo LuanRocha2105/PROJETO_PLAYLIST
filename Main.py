@@ -90,6 +90,13 @@ def reproduzir_proxima(filas, historico):
     musica.mostrar()
     historico.enqueue(musica)
 
+def exibir_fila_humor(filas):
+    nome = escolher_fila(filas)
+    if nome is None:
+        return
+    print(f"\n--- Fila {nome} ---")
+    filas[nome].exibir()
+
 
 def menu():
     print("\n===== Sistema de Playlist =====")
@@ -130,6 +137,8 @@ def main():
             montar_filas(biblioteca, filas)
         elif op == "6":
             reproduzir_proxima(filas, historico)
+        elif op == "7":
+            exibir_fila_humor(filas)
         elif op == "10":
             print("Saindo...")
             break
