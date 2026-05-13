@@ -29,3 +29,23 @@ class Fila:
             self.fim = None
         self.qtd -= 1
         return musica
+    
+    def vazia(self):
+        return self.inicio is None
+
+    def tamanho(self):
+        return self.qtd
+
+    def exibir(self):
+        if self.vazia():
+            print("Fila vazia.")
+            return
+        atual = self.inicio
+        while atual is not None:
+            atual.musica.mostrar()
+            atual = atual.proximo
+
+    def limpar(self):
+        self.inicio = None
+        self.fim = None
+        self.qtd = 0
