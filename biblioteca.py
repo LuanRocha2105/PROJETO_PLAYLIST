@@ -1,6 +1,5 @@
 from musica import Musica
 
-
 class NodoLista:
     def __init__(self, musica):
         self.musica = musica
@@ -35,6 +34,7 @@ class Biblioteca:
         while atual is not None:
             atual.musica.mostrar()
             atual = atual.proximo
+        
 
     def buscar_por_id(self, id):
         atual = self.inicio
