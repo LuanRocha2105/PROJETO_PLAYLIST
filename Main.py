@@ -1,4 +1,5 @@
 from biblioteca import Biblioteca
+from fila import Fila
 
 
 def adicionar_musica(biblioteca):
@@ -27,7 +28,7 @@ def buscar_musica(biblioteca):
         print("Musica nao encontrada.")
     else:
         musica.mostrar()
-        
+
 
 def remover_musica(biblioteca):
     id = int(input("Id da musica para remover: "))
@@ -53,12 +54,21 @@ def menu():
 
 def main():
     biblioteca = Biblioteca()
+    filas = {
+        "Relaxar": Fila(),
+        "Focar": Fila(),
+        "Animar": Fila(),
+        "Treinar": Fila(),
+    }
+    historico = Fila()
 
     while True:
         menu()
         op = input("Escolha: ")
         if op == "1":
             adicionar_musica(biblioteca)
+        elif op == "2":
+            remover_musica(biblioteca)
         elif op == "3":
             buscar_musica(biblioteca)
         elif op == "4":
