@@ -42,3 +42,11 @@ class Biblioteca:
                 return atual.musica
             atual = atual.proximo
         return None
+    
+    def buscar_por_titulo(self, titulo):
+        atual = self.inicio
+        while atual is not None:
+            if atual.musica.titulo.lower() == titulo.lower():
+                return atual.musica
+            atual = atual.proximo
+        return None
