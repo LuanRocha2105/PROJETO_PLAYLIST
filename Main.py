@@ -51,6 +51,8 @@ def main():
         op = input("Escolha: ")
         if op == "1":
             adicionar_musica(biblioteca)
+        elif op == "3":
+            buscar_musica(biblioteca)
         elif op == "4":
             biblioteca.listar()
         elif op == "10":
