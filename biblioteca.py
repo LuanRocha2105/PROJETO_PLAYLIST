@@ -34,3 +34,11 @@ class Biblioteca:
         while atual is not None:
             atual.musica.mostrar()
             atual = atual.proximo
+
+    def buscar_por_id(self, id):
+        atual = self.inicio
+        while atual is not None:
+            if atual.musica.id == id:
+                return atual.musica
+            atual = atual.proximo
+        return None
